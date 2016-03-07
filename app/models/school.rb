@@ -18,13 +18,20 @@ class School < ActiveRecord::Base
 	
 	def self.search(search)
 	  if search
-	    first_school = find(:all, :condition['name LIKE ?', "%#{search}%"]).order('name').first
-	    rest_schools = find(:all, :condition['name LIKE ?', "%#{search}%"]).where('id is not ?', first_school.id).order('name')
+	    first_school = School.where('name LIKE ?', "%#{search}%").order('name').first
+	    rest_schools = School.where('name LIKE ? and id is not ?', "%#{search}%", first_school.id).order('name')
 	  else
-	  #   find(:all)
-	    first_school = find(:all).order('name').first
-	    rest_schools = find(:all).where('id is not ?', first_school.id).order('name')
+	    first_school = School.order('name').first
+	    rest_schools = School.where('id is not ?', first_school.id).order('name')
 	  end
 	  return first_school, rest_schools
 	end
 end
+
+
+# if search
+# first_school = School.where('name LIKE ?', "%#{search}%").order('name').first
+# rest_schools = School.where('name LIKE ? and id is not ?', "%#{search}%", first_school.id).order('name')
+# else
+# first_school = School.order('name').first
+# rest_schools = School.where('id is not ?', first_school.id).order('name')
