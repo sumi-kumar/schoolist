@@ -1,0 +1,6 @@
+<p id="notice"><%= notice %></p>
+
+<%= render :partial => 'show', :locals => {:school => @school} %>
+
+<%= link_to 'Edit', edit_school_path(@school) %> |
+<%= link_to 'Back', schools_path %>
