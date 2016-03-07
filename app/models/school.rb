@@ -28,10 +28,3 @@ class School < ActiveRecord::Base
 	end
 end
 
-
-# if search
-# first_school = School.where('name LIKE ?', "%#{search}%").order('name').first
-# rest_schools = School.where('name LIKE ? and id is not ?', "%#{search}%", first_school.id).order('name')
-# else
-# first_school = School.order('name').first
-# rest_schools = School.where('id is not ?', first_school.id).order('name')
